@@ -1,8 +1,7 @@
-import sys
 import pandas as pd
 
 
-def clean_data(input1, input2, output):
+def clean(input1, input2, output):
     df_1 = pd.read_csv(input1)
     df_2 = pd.read_csv(input2)
 
@@ -13,12 +12,14 @@ def clean_data(input1, input2, output):
     df_new.to_csv(output, index=False)
 
 
-def main():
-    if len(sys.argv) != 4:
-        sys.exit(1)
-    input1, input2, output = sys.argv[1], sys.argv[2], sys.argv[3]
-    clean_data(input1, input2, output)
-
-
 if __name__ == '__main__':
-    main()
+    import argparse
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('input1', help='Data file 1 (CSV)')
+    parser.add_argument('input2', help='Data file 2 (CSV')
+    parser.add_argument('output', help='Cleaned data file (CSV)')
+    args = parser.parse_args()
+
+    clean(args.input1, args.input2, args.output)
