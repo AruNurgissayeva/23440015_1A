@@ -9,6 +9,7 @@ def clean(input1, input2, output):
     df_new.drop('id', axis=1, inplace=True)
     df_new.dropna(inplace=True)
     df_new = df_new[~df_new['job'].str.contains('insurance', na=False, case=False)]
+    print(f'The shape of the cleaned data is: {df_new.shape}')
     df_new.to_csv(output, index=False)
 
 
